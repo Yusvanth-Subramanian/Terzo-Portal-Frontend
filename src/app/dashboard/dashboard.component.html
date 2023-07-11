@@ -1,0 +1,23 @@
+<!-- dashboard.component.html -->
+
+<div class="container">
+  <div class="header">
+    <div class="user-profile-icon">
+      <img src="{{ userProfileIcon }}" alt="User Profile Icon">
+    </div>
+    <button (click)="logout()">Logout</button>
+  </div>
+  <div class="user-list">
+    <div *ngFor="let user of users" class="user-card">
+      <div class="card-body">
+        <h5 class="card-title">{{ user.name }}</h5>
+        <p class="card-text">Designation: {{ user.designation }}</p>
+        <p class="card-text">Department: {{ user.department }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage === 0">Previous</button>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages - 1">Next</button>
+  </div>
+</div>
