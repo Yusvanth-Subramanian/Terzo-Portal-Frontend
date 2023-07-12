@@ -17,6 +17,10 @@
         <h5 class="card-title">{{ user.name }}</h5>
         <p class="card-text">Designation: {{ user.designation }}</p>
         <p class="card-text">Department: {{ user.department }}</p>
+        <button *ngIf="canEditOrDelete(user)" class="btn btn-primary" (click)="editUser(user)">Edit</button>
+        <button class="btn btn-info" (click)="view(user)">View</button>
+        <button *ngIf="canEditOrDelete(user)" class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
+
       </div>
     </div>
   </div>

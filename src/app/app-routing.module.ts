@@ -8,6 +8,8 @@ import {ApplyLeaveComponent} from "./apply-leave/apply-leave.component";
 import {AdminSectionComponent} from "./admin-section/admin-section.component";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {UpdateCurrentUserComponent} from "./update-current-user/update-current-user.component";
+import {ShowUserDetailsComponent} from "./show-user-details/show-user-details.component";
+import {AdminUpdateUserComponent} from "./admin-update-user/admin-update-user.component";
 
 
 let routes: Routes;
@@ -20,6 +22,8 @@ routes = [
   {path:'admin-section',component:AdminSectionComponent,canActivate:[AuthGuard]},
   {path:'user-profile',component:UserProfileComponent,canActivate:[AuthGuard]},
   {path:'update-current-user',component:UpdateCurrentUserComponent,canActivate:[AuthGuard]},
+  {path:'show-user-details',component:ShowUserDetailsComponent,canActivate:[AuthGuard]},
+  {path:'update-user',component:AdminUpdateUserComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

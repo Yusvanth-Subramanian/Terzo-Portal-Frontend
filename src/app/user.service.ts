@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {UpdateCurrentUserDetails} from "./update-current-user-details.model";
 import {UnapprovedLeaves} from "./unapproved-leaves.model";
+import {AdminUpdateUserDTO} from "./admin-update-user-dto.model";
+import {User} from "./user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -111,5 +113,21 @@ export class UserService {
     const jwtToken = localStorage.getItem('jwtToken');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
     return this.http.put<any>(url,leave, { headers });
+  }
+
+  saveUserChanges(user: AdminUpdateUserDTO) {
+    const url = `${this.baseUrl}/update-user`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
+    return this.http.put<any>(url,user, { headers });
+  }
+
+
+  deleteUser(user: User) {
+    console.log(user);
+    const url = `${this.baseUrl}/delete-user?id=${user.id}`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
+    return this.http.delete<any>(url, { headers });
   }
 }

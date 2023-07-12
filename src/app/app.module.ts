@@ -16,6 +16,8 @@ import {ExpiredJwtHandler} from "./expired-jwt-handler.model";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { UpdateCurrentUserComponent } from './update-current-user/update-current-user.component';
+import { ShowUserDetailsComponent } from './show-user-details/show-user-details.component';
+import { AdminUpdateUserComponent } from './admin-update-user/admin-update-user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { UpdateCurrentUserComponent } from './update-current-user/update-current
     HomePageComponent,
     AdminSectionComponent,
     UserProfileComponent,
-    UpdateCurrentUserComponent
+    UpdateCurrentUserComponent,
+    ShowUserDetailsComponent,
+    AdminUpdateUserComponent
   ],
   imports: [
     BrowserModule,

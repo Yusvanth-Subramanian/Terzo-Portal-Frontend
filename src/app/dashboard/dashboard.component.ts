@@ -10,12 +10,7 @@ import { User } from "../user.model";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  userProfileIcon: string = "";
   users: User[] = [];
-  currentPage: number = 0;
-  pageSize: number = 1;
-  totalUsers: number = 0;
-  totalPages: number = 0;
   p: number = 1;
   searchQuery: string = '';
   selectedSortOrder: string = '';
@@ -49,11 +44,6 @@ export class DashboardComponent {
         console.error('An error occurred:', error);
       }
     );
-  }
-
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
   }
 
   back() {
@@ -98,5 +88,40 @@ export class DashboardComponent {
     }
     this.users = filteredData;
     this.filteredUsers = filteredData;
+  }
+
+  canEditOrDelete(user: User) {
+    const userRole = localStorage.getItem('userRole');
+    return userRole === 'MANAGER' || userRole === 'HR';
+  }
+
+  editUser(user: User) {
+    this.router.navigate(['/update-user'], { queryParams: { userProfile: JSON.stringify(user) } });
+
+  }
+
+  deleteUser(user: User) {
+
+    this.userService.deleteUser(user).subscribe(
+      response => {
+        if (response.status === 'OK') {
+          this.users = response.data;
+          this.originalList = response.data;
+          this.filterUsers();
+        } else {
+          console.error('Failed to retrieve user details:', response.msg);
+        }
+      },
+      error => {
+        console.error('An error occurred:', error);
+      }
+    );
+
+  }
+
+  view(user: User) {
+    console.log(user);
+    this.router.navigate(['/show-user-details'], { queryParams: { userProfile: JSON.stringify(user) } });
+
   }
 }

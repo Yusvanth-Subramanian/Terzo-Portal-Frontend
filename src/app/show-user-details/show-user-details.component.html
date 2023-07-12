@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="profile">
+    <img class="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIKcTkARlljahDz7xR5gq-lwY3NSwsYMQdl_AlXfua4Yc2QcQ9QIG38gxtEiMGNAdoEck&usqp=CAU" alt="Profile Picture">
+    <h2 class="name">{{ user.name }}</h2>
+    <p class="email">{{ user.email }}</p>
+  </div>
+  <div class="details">
+    <table class="table">
+      <tr>
+        <th>Designation</th>
+        <td>{{ user.designation }}</td>
+      </tr>
+      <tr>
+        <th>Department</th>
+        <td>{{ user.department }}</td>
+      </tr>
+      <tr>
+        <th>Mobile Number</th>
+        <td>{{ user.mobileNumber }}</td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td>{{ user.address }}</td>
+      </tr>
+      <tr>
+        <th>Date of Joining</th>
+        <td>{{ user.joiningDate | date }}</td>
+      </tr>
+      <tr>
+        <th>Date of Birth</th>
+        <td>{{ user.dateOfBirth | date }}</td>
+      </tr>
+    </table>
+    <div class="d-flex justify-content-center mt-3">
+      <button class="btn btn-primary" (click)="back()">Back</button>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('jwtToken');
+    localStorage.removeItem('userRole');
+    localStorage.removeItem('refreshToken');
   }
 
 }
