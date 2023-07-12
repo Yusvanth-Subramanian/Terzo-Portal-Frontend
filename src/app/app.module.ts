@@ -1,25 +1,49 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ApplyLeaveComponent } from './apply-leave/apply-leave.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import {NgxPaginationModule} from "ngx-pagination";
+import {NgOptimizedImage} from "@angular/common";
+import { AdminSectionComponent } from './admin-section/admin-section.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import {ExpiredJwtHandler} from "./expired-jwt-handler.model";
+import {AuthService} from "./auth.service";
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    ApplyLeaveComponent,
+    HomePageComponent,
+    AdminSectionComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule,
+    NgOptimizedImage,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ExpiredJwtHandler,
+    multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

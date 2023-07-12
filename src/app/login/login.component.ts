@@ -27,7 +27,7 @@ constructor(private userService: UserService, private router: Router) { }
           localStorage.setItem('jwtToken', jwtToken);
           localStorage.setItem('refreshToken', refreshToken);
 
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/home']);
         } else {
           this.errorMessage = response.msg;
         }

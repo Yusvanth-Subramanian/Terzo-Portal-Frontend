@@ -1,6 +1,10 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "styles": [
+    "src/app/apply-leave/apply-leave.component.css",
+    "./node_modules/ngx-toastr/toastr.css"
+  ],
   "newProjectRoot": "projects",
   "projects": {
     "TerzoPortal": {
