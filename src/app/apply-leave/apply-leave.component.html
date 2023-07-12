@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Apply Leave</h2>
+  <form (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label for="fromDate">From Date:</label>
+      <input type="date" class="form-control" id="fromDate" name="fromDate" [(ngModel)]="leaveData.fromDate" required ngNoModel>
+    </div>
+    <div class="form-group">
+      <label for="toDate">To Date:</label>
+      <input type="date" class="form-control" id="toDate" name="toDate" [(ngModel)]="leaveData.toDate" required ngNoModel>
+    </div>
+    <div class="form-group">
+      <label for="note">Note:</label>
+      <textarea class="form-control" id="note" name="note" rows="4" [(ngModel)]="leaveData.note" required ngNoModel></textarea>
+    </div>
+    <div class="form-group">
+      <label for="typeOfLeave">Type of Leave:</label>
+      <select class="form-control" id="typeOfLeave" name="typeOfLeave" [(ngModel)]="leaveData.typeOfLeave" required>
+        <option value="">Select</option>
+        <option value="sick-leave">Sick Leave</option>
+        <option value="paternity-leave">Paternity Leave</option>
+        <option value="earned-leave">Earned Leave</option>
+      </select>
+    </div>
+    <span *ngIf="errorMessage" class="text-danger">{{errorMessage}}</span><br>
+    <div class="d-flex justify-content-center mt-3">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+      <button class="btn btn-primary" (click)="back()">Back</button>
+    </div>
+  </form>
+</div>

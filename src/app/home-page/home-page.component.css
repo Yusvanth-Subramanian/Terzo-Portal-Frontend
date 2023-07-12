@@ -1,0 +1,20 @@
+.card{
+  margin: 10px;
+  height: 20rem;
+  width: 25rem;
+  text-align: center;
+}
+.list-group-item card-title list-group{
+  text-align: left;
+  font-size: smaller;
+}
+
+#vcard #vcard1 #vcard2{
+  font-size: smaller;
+}
+.tabs{
+  align-items: center;
+  margin-left: 30%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
