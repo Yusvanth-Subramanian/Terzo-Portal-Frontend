@@ -1,17 +1,17 @@
-<div>
+<div class="search">
   <input type="text" [(ngModel)]="searchQuery" placeholder="Search...">
-  <label for="sortOrder">Sort by:</label>
+  <label class="sortOrder" for="sortOrder">Sort by:</label>
   <select [(ngModel)]="selectedSortOrder" id="sortOrder">
     <option value="nameAsc">Name (Ascending)</option>
     <option value="nameDesc">Name (Descending)</option>
     <option value="dateAsc">Joining Date (Ascending)</option>
     <option value="dateDesc">Joining Date (Descending)</option>
   </select>
-  <button (click)="filterUsers()">Search</button>
+  <button class="btn-primary" (click)="filterUsers()">Search</button>
 </div>
 <div class="container">
   <div class="user-list d-flex flex-row flex-wrap">
-    <div *ngFor="let user of users | paginate:{itemsPerPage: 10, currentPage: p}" class="user-card">
+    <div *ngFor="let user of users | paginate:{itemsPerPage: 4, currentPage: p}" class="user-card">
       <div class="card-body">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIKcTkARlljahDz7xR5gq-lwY3NSwsYMQdl_AlXfua4Yc2QcQ9QIG38gxtEiMGNAdoEck&usqp=CAU" alt="User Profile Icon" fill="">
         <h5 class="card-title">{{ user.name }}</h5>

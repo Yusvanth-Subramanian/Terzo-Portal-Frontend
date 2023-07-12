@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {Leave} from "../leave.model";
 import {UserService} from "../user.service";
+import {AuthService} from "../auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
@@ -14,7 +16,7 @@ export class HomePageComponent {
   workAnniversaries: any;
   newHires: any;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,private authService: AuthService,private router: Router) {
   }
 
   ngOnInit() {
@@ -113,5 +115,9 @@ export class HomePageComponent {
           console.error('An error occurred:', error);
         }
       );
+  }
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

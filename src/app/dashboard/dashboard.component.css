@@ -16,5 +16,17 @@
 }
 
 .btn-primary {
-  margin-top: 1rem;
+  border-radius: 5px;
+  margin-left: 70px;
+  padding: 5px;
+  width: 100px;
+}
+
+.search{
+  margin-top: 20px;
+  margin-bottom: 50px;
+  margin-left: 30%;
+}
+.sortOrder{
+  margin-left: 50px;
 }
