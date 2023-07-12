@@ -61,6 +61,7 @@ export class DashboardComponent {
   }
 
   filterUsers() {
+    console.log("1")
     let filteredData = this.users;
 
     if (this.searchQuery === '') {

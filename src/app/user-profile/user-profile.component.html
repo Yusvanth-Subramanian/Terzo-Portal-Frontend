@@ -1,1 +1,132 @@
-<p>user-profile works!</p>
+<div class="container">
+  <div class="profile">
+    <img class="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIKcTkARlljahDz7xR5gq-lwY3NSwsYMQdl_AlXfua4Yc2QcQ9QIG38gxtEiMGNAdoEck&usqp=CAU" alt="Profile Picture">
+    <h2 class="name">{{ userProfile.name }}</h2>
+    <p class="email">{{ userProfile.email }}</p>
+    <button class="edit-button" (click)="editUser()">Edit</button>
+  </div>
+  <div class="details">
+    <table class="table">
+      <tr>
+        <th>Designation</th>
+        <td>{{ userProfile.designation }}</td>
+      </tr>
+      <tr>
+        <th>Department</th>
+        <td>{{ userProfile.departmentName }}</td>
+      </tr>
+      <tr>
+        <th>Mobile Number</th>
+        <td>{{ userProfile.mobileNumber }}</td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td>{{ userProfile.address }}</td>
+      </tr>
+      <tr>
+        <th>Date of Joining</th>
+        <td>{{ userProfile.dateOfJoining | date }}</td>
+      </tr>
+      <tr>
+        <th>Employee Type</th>
+        <td>{{ userProfile.employeeType }}</td>
+      </tr>
+      <tr>
+        <th>Reports To</th>
+        <td>{{ userProfile.reportsToUserName }}</td>
+      </tr>
+      <tr>
+        <th>Date of Birth</th>
+        <td>{{ userProfile.dateOfBirth | date }}</td>
+      </tr>
+      <tr>
+        <th>Earned Leave Left</th>
+        <td>{{ userProfile.earnedLeaveLeft }}</td>
+      </tr>
+      <tr>
+        <th>Sick Leave Left</th>
+        <td>{{ userProfile.sickLeaveLeft }}</td>
+      </tr>
+      <tr>
+        <th>Paternity Leave Left</th>
+        <td>{{ userProfile.paternityLeaveLeft }}</td>
+      </tr>
+      <tr>
+        <th>User Role</th>
+        <td>{{ userProfile.userRole }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      Unapproved Leaves
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered">
+        <tr>
+          <th>From Date</th>
+          <th>To Date</th>
+          <th>Note</th>
+          <th>Type of Leave</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+          <td colspan="5"><span *ngIf="noData" class="text-danger">{{noData}}</span></td>
+        </tr>
+        <tr *ngFor="let leave of unApprovedLeaves;let i = index">
+          <td>
+            <ng-container *ngIf="leave.id === editRowId; else displayFromDate">
+              <input type="date" [(ngModel)]="leave.fromDate" required>
+            </ng-container>
+            <ng-template #displayFromDate>
+              {{ leave.fromDate | date }}
+            </ng-template>
+          </td>
+          <td>
+            <ng-container *ngIf="leave.id === editRowId; else displayToDate">
+              <input type="date" [(ngModel)]="leave.toDate" required>
+            </ng-container>
+            <ng-template #displayToDate>
+              {{ leave.toDate | date }}
+            </ng-template>
+          </td>
+          <td>
+            <ng-container *ngIf="leave.id === editRowId; else displayNote">
+              <textarea [(ngModel)]="leave.note" rows="4" required></textarea>
+            </ng-container>
+            <ng-template #displayNote>
+              {{ leave.note }}
+            </ng-template>
+          </td>
+          <td>
+            <ng-container *ngIf="leave.id === editRowId; else displayTypeOfLeave">
+              <select [(ngModel)]="leave.typeOfLeave" required>
+                <option value="">Select</option>
+                <option value="sick-leave">Sick Leave</option>
+                <option value="paternity-leave">Paternity Leave</option>
+                <option value="earned-leave">Earned Leave</option>
+              </select>
+            </ng-container>
+            <ng-template #displayTypeOfLeave>
+              {{ leave.typeOfLeave }}
+            </ng-template>
+          </td>
+          <td>
+            <ng-container *ngIf="leave.id === editRowId; else displayActions">
+              <button class="btn btn-success" (click)="saveLeave(leave.id)">Save</button>
+            </ng-container>
+            <ng-template #displayActions>
+              <button class="btn btn-primary" (click)="editLeave(leave.id)">Edit</button>
+              <button class="btn btn-danger" (click)="deleteLeave(leave.id)">Delete</button>
+            </ng-template>
+          </td>
+          <td>
+            <span *ngIf="leave.id === editRowId && i === errorRowIndex" class="text-danger">{{ errorMessage }}</span><br>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

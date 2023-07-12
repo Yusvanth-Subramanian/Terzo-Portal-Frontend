@@ -7,6 +7,7 @@ import {HomePageComponent} from "./home-page/home-page.component";
 import {ApplyLeaveComponent} from "./apply-leave/apply-leave.component";
 import {AdminSectionComponent} from "./admin-section/admin-section.component";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
+import {UpdateCurrentUserComponent} from "./update-current-user/update-current-user.component";
 
 
 let routes: Routes;
@@ -18,6 +19,7 @@ routes = [
   {path: 'apply-leave', component: ApplyLeaveComponent, canActivate: [AuthGuard]},
   {path:'admin-section',component:AdminSectionComponent,canActivate:[AuthGuard]},
   {path:'user-profile',component:UserProfileComponent,canActivate:[AuthGuard]},
+  {path:'update-current-user',component:UpdateCurrentUserComponent,canActivate:[AuthGuard]},
 ];
 
 @NgModule({

@@ -23,9 +23,10 @@ constructor(private userService: UserService, private router: Router) { }
         if (response.status === 'OK') {
           const jwtToken = response.data.jwt;
           const refreshToken = response.data.refreshToken;
-
+          const userRole = response.data.userRole;
           localStorage.setItem('jwtToken', jwtToken);
           localStorage.setItem('refreshToken', refreshToken);
+          localStorage.setItem('userRole',userRole);
 
           this.router.navigate(['/home']);
         } else {

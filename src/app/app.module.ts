@@ -13,9 +13,9 @@ import {NgOptimizedImage} from "@angular/common";
 import { AdminSectionComponent } from './admin-section/admin-section.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {ExpiredJwtHandler} from "./expired-jwt-handler.model";
-import {AuthService} from "./auth.service";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { UpdateCurrentUserComponent } from './update-current-user/update-current-user.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ApplyLeaveComponent,
     HomePageComponent,
     AdminSectionComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UpdateCurrentUserComponent
   ],
   imports: [
     BrowserModule,

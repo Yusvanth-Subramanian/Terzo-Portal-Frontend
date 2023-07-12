@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
+import {UpdateCurrentUserDetails} from "./update-current-user-details.model";
+import {UnapprovedLeaves} from "./unapproved-leaves.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private baseUrl = 'http://localhost:8080';
+
+  check = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 
@@ -67,5 +71,45 @@ export class UserService {
     const jwtToken = localStorage.getItem('jwtToken');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
     return this.http.post<any>(url, leaveData,{ headers });
+  }
+
+  getUserProfile() {
+    const url = `${this.baseUrl}/get-employee/details`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
+    return this.http.get<any>(url, { headers });
+  }
+
+  updateUser(updatedUser: UpdateCurrentUserDetails,id:number,email:string) {
+    // console.log("in service "+updatedUser);
+
+     updatedUser.id=id;
+     updatedUser.email=email;
+    console.log(updatedUser);
+    const url = `${this.baseUrl}/update`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
+    return this.http.put<any>(url, updatedUser,{ headers });
+  }
+
+  getUnApprovedLeaves() {
+    const url = `${this.baseUrl}/get-user-unapproved-leaves`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
+    return this.http.get<any>(url, { headers });
+  }
+
+  deleteLeave(id: number) {
+    const url = `${this.baseUrl}/delete-leave/${id}`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
+    return this.http.delete<any>(url, { headers });
+  }
+
+  saveLeave(leave: UnapprovedLeaves) {
+    const url = `${this.baseUrl}/update-leave`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
+    return this.http.put<any>(url,leave, { headers });
   }
 }
