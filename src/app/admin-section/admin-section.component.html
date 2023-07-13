@@ -1,1 +1,29 @@
-<p>admin-section works!</p>
+<div *ngIf="canAdd()" class="header">
+  <button (click)="addUser()" class="btn-primary">Add User</button>
+</div>
+
+<table *ngIf="data.length > 0" class="table">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>From Date</th>
+    <th>To Date</th>
+    <th>Note</th>
+    <th>User Name</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of data">
+    <td>{{ item.id }}</td>
+    <td>{{ item.fromDate }}</td>
+    <td>{{ item.toDate }}</td>
+    <td>{{ item.note }}</td>
+    <td>{{ item.userName }}</td>
+    <td>
+      <button (click)="approveItem(item)" class="btn btn-success" *ngIf="canApprove()">Approve</button>
+      <button (click)="disapproveItem(item)" class="btn btn-danger" *ngIf="canApprove()">Disapprove</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

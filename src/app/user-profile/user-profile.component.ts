@@ -3,6 +3,7 @@ import { UserService } from '../user.service';
 import { UserDetails } from "../user-details.model";
 import { Router } from "@angular/router";
 import {UnapprovedLeaves} from "../unapproved-leaves.model";
+import {User} from "../user.model";
 
 @Component({
   selector: 'app-user-profile',
@@ -23,6 +24,7 @@ export class UserProfileComponent implements OnInit {
     this.loadUserProfile();
     this.loadUnApprovedLeaves();
   }
+
 
   loadUserProfile() {
     this.userService.getUserProfile().subscribe(

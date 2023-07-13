@@ -5,6 +5,7 @@ import {UpdateCurrentUserDetails} from "./update-current-user-details.model";
 import {UnapprovedLeaves} from "./unapproved-leaves.model";
 import {AdminUpdateUserDTO} from "./admin-update-user-dto.model";
 import {User} from "./user.model";
+import {AddUserDTO} from "./add-user-dto.model";
 
 @Injectable({
   providedIn: 'root'
@@ -124,10 +125,45 @@ export class UserService {
 
 
   deleteUser(user: User) {
-    console.log(user);
     const url = `${this.baseUrl}/delete-user?id=${user.id}`;
     const jwtToken = localStorage.getItem('jwtToken');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
     return this.http.delete<any>(url, { headers });
+  }
+
+  loadManagers() {
+    const url = `${this.baseUrl}/get-managers`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
+    return this.http.get<any>(url, { headers });
+  }
+
+  saveUser(user: AddUserDTO) {
+    console.log(user);
+    const url = `${this.baseUrl}/save-user`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
+    return this.http.post<any>(url,user, { headers });
+  }
+
+  loadUnapprovedLeaves() {
+    const url = `${this.baseUrl}/get-unapproved-leaves`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
+    return this.http.get<any>(url, { headers });
+  }
+
+  approvedLeave(leave:UnapprovedLeaves) {
+    const url = `${this.baseUrl}/approve-leave?id=${leave.id}`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
+    return this.http.get<any>(url, { headers });
+  }
+
+  disApprovedLeave(leave: UnapprovedLeaves) {
+    const url = `${this.baseUrl}/disapprove-leave?id=${leave.id}`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
+    return this.http.get<any>(url, { headers });
   }
 }

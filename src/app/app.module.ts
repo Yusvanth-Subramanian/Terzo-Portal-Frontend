@@ -18,6 +18,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { UpdateCurrentUserComponent } from './update-current-user/update-current-user.component';
 import { ShowUserDetailsComponent } from './show-user-details/show-user-details.component';
 import { AdminUpdateUserComponent } from './admin-update-user/admin-update-user.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AdminUpdateUserComponent } from './admin-update-user/admin-update-user.
     UserProfileComponent,
     UpdateCurrentUserComponent,
     ShowUserDetailsComponent,
-    AdminUpdateUserComponent
+    AdminUpdateUserComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,

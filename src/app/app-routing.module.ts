@@ -10,6 +10,7 @@ import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {UpdateCurrentUserComponent} from "./update-current-user/update-current-user.component";
 import {ShowUserDetailsComponent} from "./show-user-details/show-user-details.component";
 import {AdminUpdateUserComponent} from "./admin-update-user/admin-update-user.component";
+import {AddUserComponent} from "./add-user/add-user.component";
 
 
 let routes: Routes;
@@ -23,7 +24,8 @@ routes = [
   {path:'user-profile',component:UserProfileComponent,canActivate:[AuthGuard]},
   {path:'update-current-user',component:UpdateCurrentUserComponent,canActivate:[AuthGuard]},
   {path:'show-user-details',component:ShowUserDetailsComponent,canActivate:[AuthGuard]},
-  {path:'update-user',component:AdminUpdateUserComponent,canActivate:[AuthGuard]}
+  {path:'update-user',component:AdminUpdateUserComponent,canActivate:[AuthGuard]},
+  {path:'add-user',component:AddUserComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

@@ -28,3 +28,6 @@
   margin-top: 20px;
   margin-left: 90%;
 }
+.toast-top-right toast-container{
+  display: none;
+}

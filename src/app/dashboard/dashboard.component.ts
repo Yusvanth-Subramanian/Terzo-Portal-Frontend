@@ -3,6 +3,7 @@ import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
 import { UserService } from "../user.service";
 import { User } from "../user.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,12 +17,16 @@ export class DashboardComponent {
   selectedSortOrder: string = '';
   originalList: User[] = [];
   filteredUsers: User[] = [];
+  selfDeletionMessage:string="";
 
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private router: Router
-  ) {}
+    private router: Router, private toastr: ToastrService
+  ) {
+    this.toastr.toastrConfig.positionClass = 'toast-top-right';
+    this.toastr.toastrConfig.toastClass = 'custom-toast-class';
+  }
 
   ngOnInit() {
     this.loadUsers();
@@ -111,7 +116,10 @@ export class DashboardComponent {
         }
       },
       error => {
-        console.error('An error occurred:', error);
+        this.toastr.error('You cannot delete yourself while logged in',
+          'Error',
+          { closeButton: false ,titleClass: "center", messageClass: "center" });
+        console.error('Error applying leave:', error);
       }
     );
 

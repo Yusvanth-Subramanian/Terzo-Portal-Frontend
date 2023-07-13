@@ -8,7 +8,7 @@ export class AdminUpdateUserDTO {
 
    dateOfBirth:Date=new Date();
 
-  Active:boolean=true;
+  activeStatus:string="";
 
   departmentId:number=0;
 
