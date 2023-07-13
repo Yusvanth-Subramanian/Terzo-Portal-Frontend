@@ -105,9 +105,7 @@ export class DashboardComponent {
     this.userService.deleteUser(user).subscribe(
       response => {
         if (response.status === 'OK') {
-          this.users = response.data;
-          this.originalList = response.data;
-          this.filterUsers();
+          this.loadUsers();
         } else {
           console.error('Failed to retrieve user details:', response.msg);
         }
