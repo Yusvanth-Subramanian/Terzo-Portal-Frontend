@@ -40,27 +40,23 @@
       <input type="email" class="form-control" id="email" [(ngModel)]="user.email" name="email" required>
     </div>
     <div class="form-group">
-      <label for="password">Password</label>
-      <input type="text" class="form-control" id="password" [(ngModel)]="user.passwordForUser" name="password" required>
-    </div>
-    <div class="form-group">
       <label for="date">To Date:</label>
       <input type="date" class="form-control" id="date" name="dob" [(ngModel)]="user.dateOfBirth" required >
     </div>
     <div class="form-group">
       <label for="roleId">Role</label>
       <select class="form-control" id="roleId" [(ngModel)]="user.roleId" name="roleId" required>
-        <option value="1">EMPLOYEE</option>
-        <option value="2">MANAGER</option>
-        <option value="3">HR</option>
+        <option value="3">EMPLOYEE</option>
+        <option value="1">MANAGER</option>
+        <option value="2">HR</option>
       </select>
     </div>
     <div class="form-group">
       <label for="teamId">Team</label>
       <select class="form-control" id="teamId" [(ngModel)]="user.teamId" name="teamId" required>
-        <option value="1">Titans</option>
+        <option value="3">Titans</option>
         <option value="2">Mafia</option>
-        <option value="3">Marvel</option>
+        <option value="1">Marvel</option>
       </select>
     </div>
     <button type="submit" class="btn btn-primary">Save</button>

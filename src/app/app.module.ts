@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ApplyLeaveComponent } from './apply-leave/apply-leave.component';
@@ -19,6 +19,9 @@ import { UpdateCurrentUserComponent } from './update-current-user/update-current
 import { ShowUserDetailsComponent } from './show-user-details/show-user-details.component';
 import { AdminUpdateUserComponent } from './admin-update-user/admin-update-user.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ActivateAccountComponent } from './activate-account/activate-account.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { AddUserComponent } from './add-user/add-user.component';
     UpdateCurrentUserComponent,
     ShowUserDetailsComponent,
     AdminUpdateUserComponent,
-    AddUserComponent
+    AddUserComponent,
+    ForgotPasswordComponent,
+    ChangePasswordComponent,
+    ActivateAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,8 @@ import { AddUserComponent } from './add-user/add-user.component';
     NgxPaginationModule,
     NgOptimizedImage,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [
     {

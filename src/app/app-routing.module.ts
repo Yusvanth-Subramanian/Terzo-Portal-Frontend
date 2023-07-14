@@ -11,6 +11,9 @@ import {UpdateCurrentUserComponent} from "./update-current-user/update-current-u
 import {ShowUserDetailsComponent} from "./show-user-details/show-user-details.component";
 import {AdminUpdateUserComponent} from "./admin-update-user/admin-update-user.component";
 import {AddUserComponent} from "./add-user/add-user.component";
+import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
+import {ChangePasswordComponent} from "./change-password/change-password.component";
+import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 
 
 let routes: Routes;
@@ -25,7 +28,10 @@ routes = [
   {path:'update-current-user',component:UpdateCurrentUserComponent,canActivate:[AuthGuard]},
   {path:'show-user-details',component:ShowUserDetailsComponent,canActivate:[AuthGuard]},
   {path:'update-user',component:AdminUpdateUserComponent,canActivate:[AuthGuard]},
-  {path:'add-user',component:AddUserComponent,canActivate:[AuthGuard]}
+  {path:'add-user',component:AddUserComponent,canActivate:[AuthGuard]},
+  {path:'forgot-password',component:ForgotPasswordComponent},
+  {path:'change-password',component:ChangePasswordComponent},
+  {path:'activate-account',component:ActivateAccountComponent},
 ];
 
 @NgModule({

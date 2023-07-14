@@ -24,6 +24,9 @@ export class AddUserComponent {
 
 
   saveUser() {
+
+    this.user.passwordForUser= Math.floor(Math.random() * 900000) + 100000+"";
+
     this.userService.saveUser(this.user).subscribe(
       response => {
         if (response.status === 'OK') {
@@ -53,6 +56,8 @@ export class AddUserComponent {
     this.userService.loadManagers().subscribe(
       response => {
         if (response.status === 'OK') {
+          console.log("managers")
+          console.log(response)
           this.managers=response.data;
         } else {
           console.error('Failed to load manager:', response.msg);

@@ -24,7 +24,7 @@
         <h6 class="card-title">Upcoming Holidays</h6>
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let holiday of upcomingHolidays">
-            <span>{{ holiday.name }}</span>
+            <span>{{ holiday.name }}</span> -
             <span>{{ holiday.date | date }}</span>
           </li>
         </ul>
@@ -48,9 +48,9 @@
       <h6 id="vcard" class="card-title">Birthday Buddies</h6>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let birthday of birthdayBuddies">
-          <span>{{ birthday.name }}</span>
-          <span>{{ birthday.date | date }}</span>
-          <span>{{ birthday.department }}</span>
+          <span>{{ birthday.date | date }}</span> -
+          <span>{{ birthday.name }}</span> -
+          <span>{{ birthday.department }}</span> -
           <span>{{ birthday.designation }}</span>
         </li>
       </ul>
@@ -59,9 +59,9 @@
       <h6 id="vcard1" class="card-title">Work Anniversaries</h6>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let anniversary of workAnniversaries">
-          <span>{{ anniversary.name }}</span>
-          <span>{{ anniversary.designation }}</span>
-          <span>{{ anniversary.department }}</span>
+          <span>{{ anniversary.name }}</span> -
+          <span>{{ anniversary.designation }}</span> -
+          <span>{{ anniversary.department }}</span> -
           <span>{{ anniversary.year }} years</span>
         </li>
       </ul>

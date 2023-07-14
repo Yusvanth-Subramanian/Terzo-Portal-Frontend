@@ -132,4 +132,7 @@ export class UserProfileComponent implements OnInit {
       }
     );
   }
+  changePassword() {
+    this.router.navigate(['/change-password'], { queryParams: { data: JSON.stringify({ email: this.userProfile.email, forForgotPassword: false }) } });
+  }
 }

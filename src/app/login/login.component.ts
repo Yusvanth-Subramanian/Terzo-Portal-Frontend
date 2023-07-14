@@ -24,7 +24,7 @@ constructor(private userService: UserService, private router: Router) { }
           const jwtToken = response.data.jwt;
           const refreshToken = response.data.refreshToken;
           const userRole = response.data.userRoles;
-          localStorage.setItem('jwtToken', jwtToken);
+          localStorage.setItem('jwtToken', "Bearer "+jwtToken);
           localStorage.setItem('refreshToken', refreshToken);
           localStorage.setItem('userRole',userRole);;
 
@@ -36,7 +36,11 @@ constructor(private userService: UserService, private router: Router) { }
         if (error instanceof HttpErrorResponse && error.status === 417 || error.status ===400) {
           this.errorMessage = "Invalid Credentials!";
           console.error('Expectation Failed:', error.message);
-        } else {
+        }
+        else if(error.status === 403){
+          this.errorMessage = "Activate your account to login";
+        }
+        else {
           console.error('An error occurred:', error);
         }
       });
