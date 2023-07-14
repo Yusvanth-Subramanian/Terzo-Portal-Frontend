@@ -25,8 +25,8 @@ export class UserService {
     return this.http.post(`${this.baseUrl}/login`, loginData);
   }
 
-  getEmployees(): Observable<any> {
-    const url = `${this.baseUrl}/get-employees`;
+  getEmployees(start:number,end:number): Observable<any> {
+    const url = `${this.baseUrl}/get-employees/${start}/${end}`;
     const jwtToken = localStorage.getItem('jwtToken');
     const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
     return this.http.get<any>(url, { headers });
@@ -196,5 +196,12 @@ export class UserService {
     const jwtToken = localStorage.getItem('jwtToken');
     const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
     return this.http.post<any>(url,changePasswordRequest, { headers });
+  }
+
+  getTotalUsers() {
+    const url = `${this.baseUrl}/get-total-users`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
+    return this.http.get<any>(url, { headers });
   }
 }

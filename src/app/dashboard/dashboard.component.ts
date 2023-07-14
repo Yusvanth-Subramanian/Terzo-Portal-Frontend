@@ -18,6 +18,9 @@ export class DashboardComponent {
   originalList: User[] = [];
   filteredUsers: User[] = [];
   selfDeletionMessage:string="";
+  currentPage: number=0;
+  totalUserPerPage: number=2;
+  totalPages: number = 0;
 
   constructor(
     private authService: AuthService,
@@ -30,17 +33,34 @@ export class DashboardComponent {
 
   ngOnInit() {
     this.loadUsers();
+    this.loadTotalUsers()
+  }
+
+  loadTotalUsers(){
+    this.userService.getTotalUsers().subscribe(
+      response => {
+        if (response.status === 'OK') {
+          this.totalPages=Math.ceil(Number(response.data)/this.totalUserPerPage);
+        } else {
+          console.error('Failed to retrieve user details:', response.msg);
+        }
+      },
+      error => {
+        console.error('An error occurred:', error);
+      }
+    );
   }
 
   loadUsers() {
-    this.userService.getEmployees().subscribe(
+    this.userService.getEmployees(this.currentPage,this.totalUserPerPage).subscribe(
       response => {
-        console.log(response);
-        console.log("jwt - "+localStorage.getItem("jwtToken"))
+        console.log("Load users")
+         console.log(response);
+        console.log(this.totalPages)
+        // console.log("jwt - "+localStorage.getItem("jwtToken"))
         if (response.status === 'OK') {
           this.users = response.data;
           this.originalList = response.data;
-          this.filterUsers();
         } else {
           console.error('Failed to retrieve user details:', response.msg);
         }
@@ -55,45 +75,6 @@ export class DashboardComponent {
     this.router.navigate(['/home']);
   }
 
-  filterUsers() {
-    console.log("1")
-    let filteredData = this.users;
-
-    if (this.searchQuery === '') {
-      if (this.selectedSortOrder === 'nameAsc') {
-        filteredData.sort((a, b) => a.name.localeCompare(b.name));
-      } else if (this.selectedSortOrder === 'nameDesc') {
-        filteredData.sort((a, b) => b.name.localeCompare(a.name));
-      } else if (this.selectedSortOrder === 'dateAsc') {
-        filteredData.sort((a, b) => new Date(a.joiningDate).getTime() - new Date(b.joiningDate).getTime());
-      } else if (this.selectedSortOrder === 'dateDesc') {
-        filteredData.sort((a, b) => new Date(b.joiningDate).getTime() - new Date(a.joiningDate).getTime());
-      } else {
-        filteredData = this.originalList;
-      }
-    } else {
-      filteredData = this.users.filter(user =>
-        user.name && user.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-
-      switch (this.selectedSortOrder) {
-        case 'nameAsc':
-          filteredData.sort((a, b) => a.name.localeCompare(b.name));
-          break;
-        case 'nameDesc':
-          filteredData.sort((a, b) => b.name.localeCompare(a.name));
-          break;
-        case 'dateAsc':
-          filteredData.sort((a, b) => new Date(a.joiningDate).getTime() - new Date(b.joiningDate).getTime());
-          break;
-        case 'dateDesc':
-          filteredData.sort((a, b) => new Date(b.joiningDate).getTime() - new Date(a.joiningDate).getTime());
-          break;
-      }
-    }
-    this.users = filteredData;
-    this.filteredUsers = filteredData;
-  }
 
   canEditOrDelete(user: User) {
     const userRole = localStorage.getItem('userRole');
@@ -129,5 +110,19 @@ export class DashboardComponent {
     console.log(user);
     this.router.navigate(['/show-user-details'], { queryParams: { userProfile: JSON.stringify(user) } });
 
+  }
+
+  previousPage() {
+    if(this.currentPage>0){
+      this.currentPage--;
+      this.loadUsers();
+    }
+  }
+
+  nextPage() {
+    if(this.currentPage<this.totalPages){
+      this.currentPage++;
+      this.loadUsers();
+    }
   }
 }

@@ -1,7 +1,11 @@
-<div *ngIf="canAdd()" class="header">
+<div id="btn" class="d-flex justify-content-start mt-3">
+  <button class="btn btn-primary" (click)="back()">Back</button>
+</div>
+<div *ngIf="canAdd()" class="d-flex justify-content-center mt-3">
   <button (click)="addUser()" class="btn-primary">Add User</button>
 </div>
-
+<div id="error" class="alert alert-danger" *ngIf="errorMsg !== ''">{{ errorMsg }}</div>
+<div id="error1" class="alert alert-danger" *ngIf="errorMsg == ''">Unapproved Leaves</div>
 <table *ngIf="data.length > 0" class="table">
   <thead>
   <tr>

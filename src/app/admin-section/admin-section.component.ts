@@ -10,6 +10,7 @@ import {UserService} from "../user.service";
 })
 export class AdminSectionComponent {
   data: LeavesYetToBeApprovedDTO[] = [];
+  errorMsg :string="";
   constructor(private router: Router,private userService:UserService) {
     this.loadUnapprovedLeaves();
   }
@@ -64,8 +65,10 @@ export class AdminSectionComponent {
     this.userService.loadUnapprovedLeaves().subscribe(
       response => {
         if (response.status === 'OK') {
-          console.log("here");
           this.data=response.data;
+          if(this.data.length==0){
+            this.errorMsg="Currently there are no unapproved leaves";
+          }
         } else {
           console.error('Failed get unapproved leaves:', response.msg);
         }
@@ -74,5 +77,9 @@ export class AdminSectionComponent {
         console.error('Error in getting unapproved leaves:', error);
       }
     );
+  }
+
+  back() {
+    this.router.navigate(['home'])
   }
 }

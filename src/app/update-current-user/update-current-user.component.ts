@@ -55,4 +55,8 @@ export class UpdateCurrentUserComponent implements OnInit {
         }
       );
   }
+
+  back() {
+    this.router.navigate(['/user-profile'])
+  }
 }
