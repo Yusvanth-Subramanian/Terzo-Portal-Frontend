@@ -53,3 +53,10 @@
 .toast-top-right toast-container{
   display: none;
 }
+.container-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}

@@ -13,14 +13,13 @@ import {ToastrService} from "ngx-toastr";
 export class DashboardComponent {
   users: User[] = [];
   p: number = 1;
-  searchQuery: string = '';
-  selectedSortOrder: string = '';
   originalList: User[] = [];
-  filteredUsers: User[] = [];
-  selfDeletionMessage:string="";
   currentPage: number=0;
   totalUserPerPage: number=2;
   totalPages: number = 0;
+  sortAttribute: string="";
+  sortOption: string="";
+  search: string="";
 
   constructor(
     private authService: AuthService,
@@ -52,7 +51,13 @@ export class DashboardComponent {
   }
 
   loadUsers() {
-    this.userService.getEmployees(this.currentPage,this.totalUserPerPage).subscribe(
+    if(!this.sortOption){
+      this.sortOption="null";
+    }
+    if(!this.sortAttribute){
+      this.sortAttribute="null";
+    }
+    this.userService.getEmployees(this.currentPage,this.totalUserPerPage,this.sortOption,this.sortAttribute).subscribe(
       response => {
         console.log("Load users")
          console.log(response);
@@ -124,5 +129,26 @@ export class DashboardComponent {
       this.currentPage++;
       this.loadUsers();
     }
+  }
+
+  applySearchAndSort() {
+    if(this.sortOption==="nameAsc"){
+      this.sortOption="ASC";
+      this.sortAttribute="name";
+    }
+    if(this.sortOption==="nameDesc"){
+      this.sortOption="DESC";
+      this.sortAttribute="name";
+    }
+    if(this.sortOption==="joiningDateAsc"){
+      this.sortOption="ASC";
+      this.sortAttribute="dateOfJoining";
+    }
+    if(this.sortOption==="joiningDateDesc"){
+      this.sortOption="DESC";
+      this.sortAttribute="dateOfJoining";
+    }
+    this.loadTotalUsers();
+    this.loadUsers();
   }
 }

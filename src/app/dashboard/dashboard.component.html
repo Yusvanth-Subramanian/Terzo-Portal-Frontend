@@ -1,7 +1,17 @@
+<div class="container-center">
+  <div class="search-and-sort">
+    Sort: <select [(ngModel)]="sortOption">
+    <option value="">Sort by</option>
+    <option value="nameAsc">Name (Ascending)</option>
+    <option value="nameDesc">Name (Descending)</option>
+    <option value="joiningDateAsc">Joining Date (Ascending)</option>
+    <option value="joiningDateDesc">Joining Date (Descending)</option>
+  </select>
+    <button class="btn btn-primary" (click)="applySearchAndSort()">Apply</button>
+  </div>
 
-<div class="container">
   <div class="user-list d-flex flex-row flex-wrap">
-    <div *ngFor="let user of users | paginate:{itemsPerPage: 4, currentPage: p}" class="user-card">
+    <div *ngFor="let user of users " class="user-card">
       <div class="card-body">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIKcTkARlljahDz7xR5gq-lwY3NSwsYMQdl_AlXfua4Yc2QcQ9QIG38gxtEiMGNAdoEck&usqp=CAU" alt="User Profile Icon" fill="">
         <h5 class="card-title">{{ user.name }}</h5>
@@ -10,14 +20,15 @@
         <button *ngIf="canEditOrDelete(user)" class="btn btn-primary" (click)="editUser(user)">Edit</button>
         <button class="btn btn-info" (click)="view(user)">View</button>
         <button *ngIf="canEditOrDelete(user)" class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
-
       </div>
     </div>
   </div>
+
   <div class="pagination">
     <button (click)="previousPage()" [disabled]="currentPage === 0">Previous</button>
     <button (click)="nextPage()" [disabled]="currentPage === totalPages - 1">Next</button>
   </div>
+
   <div class="d-flex justify-content-center mt-3">
     <button class="btn btn-primary" (click)="back()">Back</button>
   </div>

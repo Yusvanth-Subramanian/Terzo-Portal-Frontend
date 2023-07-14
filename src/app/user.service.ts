@@ -25,8 +25,9 @@ export class UserService {
     return this.http.post(`${this.baseUrl}/login`, loginData);
   }
 
-  getEmployees(start:number,end:number): Observable<any> {
-    const url = `${this.baseUrl}/get-employees/${start}/${end}`;
+  getEmployees(start:number,end:number,type:string,query:string): Observable<any> {
+    console.log("calling")
+    const url = `${this.baseUrl}/get-employees/${start}/${end}/${type}/${query}`;
     const jwtToken = localStorage.getItem('jwtToken');
     const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
     return this.http.get<any>(url, { headers });
