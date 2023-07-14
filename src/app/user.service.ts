@@ -204,4 +204,25 @@ export class UserService {
     const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
     return this.http.get<any>(url, { headers });
   }
+
+  loadTeams() {
+    const url = `${this.baseUrl}/get-all-teams`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
+    return this.http.get<any>(url, { headers });
+  }
+
+  loadDepartments() {
+    const url = `${this.baseUrl}/get-all-departments`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
+    return this.http.get<any>(url, { headers });
+  }
+
+  loadRoles() {
+    const url = `${this.baseUrl}/get-all-roles`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
+    return this.http.get<any>(url, { headers });
+  }
 }
