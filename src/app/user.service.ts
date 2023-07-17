@@ -26,7 +26,6 @@ export class UserService {
   }
 
   getEmployees(start:number,end:number,type:string,query:string): Observable<any> {
-    console.log("calling")
     const url = `${this.baseUrl}/get-employees/${start}/${end}/${type}/${query}`;
     const jwtToken = localStorage.getItem('jwtToken');
     const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
@@ -222,6 +221,13 @@ export class UserService {
 
   loadRoles() {
     const url = `${this.baseUrl}/get-all-roles`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
+    return this.http.get<any>(url, { headers });
+  }
+
+  getCalenderData() {
+    const url = `${this.baseUrl}/get-calendar-data`;
     const jwtToken = localStorage.getItem('jwtToken');
     const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
     return this.http.get<any>(url, { headers });

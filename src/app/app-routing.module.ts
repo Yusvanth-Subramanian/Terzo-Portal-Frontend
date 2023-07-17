@@ -14,6 +14,8 @@ import {AddUserComponent} from "./add-user/add-user.component";
 import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
+import {LeaveCalenderComponent} from "./leave-calender/leave-calender.component";
+import {RouteToChangePasswordComponent} from "./route-to-change-password/route-to-change-password.component";
 
 
 let routes: Routes;
@@ -32,6 +34,8 @@ routes = [
   {path:'forgot-password',component:ForgotPasswordComponent},
   {path:'change-password',component:ChangePasswordComponent},
   {path:'activate-account',component:ActivateAccountComponent},
+  {path:'redirect-to-change-password/:email',component:RouteToChangePasswordComponent},
+  {path:'leave-calender',component:LeaveCalenderComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

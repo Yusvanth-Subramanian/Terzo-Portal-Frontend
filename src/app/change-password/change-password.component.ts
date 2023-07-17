@@ -12,6 +12,7 @@ export class ChangePasswordComponent {
   changePasswordForm: FormGroup;
   forForgotPassword = false;
   data:any;
+  email:string="";
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
@@ -26,18 +27,41 @@ export class ChangePasswordComponent {
   });
     this.route.queryParams.subscribe(params => {
       const userProfileString = params['data'];
-      this.data = JSON.parse(userProfileString);
+      if(userProfileString) {
+        this.data = JSON.parse(userProfileString);
+      }
     });
-    this.forForgotPassword=this.data.forForgotPassword;
+    this.route.queryParams.subscribe(params =>
+    {
+      const email = params['email'];
+      this.email=email;
+    })
+    console.log("email");
+    console.log(this.email);
+    if(this.data) {
+      this.forForgotPassword = this.data.forForgotPassword;
+    }
+    if(!this.forForgotPassword && this.email){
+      this.forForgotPassword = true;
+    }
   }
 
   ngOnInit() {
+    let formEmail :string="";
+    if(this.email){
+      formEmail=this.email;
+    }
+    else{
+      formEmail=this.data.email;
+    }
     this.changePasswordForm = this.formBuilder.group({
-      email:this.data.email,
+      email:formEmail,
       oldPassword: [''],
       newPassword: ['', Validators.required],
       confirmPassword: ['', Validators.required]
     });
+
+
   }
 
   errorMsg:string="";
@@ -47,10 +71,10 @@ export class ChangePasswordComponent {
     const email = this.changePasswordForm.get('email')?.value;
     const oldPassword = this.changePasswordForm.get('oldPassword')?.value;
     const confirmPassword = this.changePasswordForm.get('confirmPassword')?.value;
-    if (this.forForgotPassword) {
+    if (this.forForgotPassword || this.email) {
       delete this.changePasswordForm.value.oldPassword;
     }
-
+    console.log(this.forForgotPassword);
     if(newPassword!=confirmPassword){
       this.errorMsg="Password and Confirm Password dont match";
     }

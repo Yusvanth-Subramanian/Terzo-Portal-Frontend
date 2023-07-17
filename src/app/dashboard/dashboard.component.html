@@ -1,5 +1,6 @@
 <div class="container-center">
   <div class="search-and-sort">
+    Search <input type="text" [(ngModel)]="searchText" placeholder="Search by name" class="form-control">
     Sort: <select [(ngModel)]="sortOption">
     <option value="">Sort by</option>
     <option value="nameAsc">Name (Ascending)</option>

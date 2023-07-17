@@ -19,7 +19,7 @@ export class DashboardComponent {
   totalPages: number = 0;
   sortAttribute: string="";
   sortOption: string="";
-  search: string="";
+  searchText: string=" ";
 
   constructor(
     private authService: AuthService,
@@ -57,6 +57,7 @@ export class DashboardComponent {
     if(!this.sortAttribute){
       this.sortAttribute="null";
     }
+
     this.userService.getEmployees(this.currentPage,this.totalUserPerPage,this.sortOption,this.sortAttribute).subscribe(
       response => {
         console.log("Load users")
@@ -132,6 +133,7 @@ export class DashboardComponent {
   }
 
   applySearchAndSort() {
+
     if(this.sortOption==="nameAsc"){
       this.sortOption="ASC";
       this.sortAttribute="name";
