@@ -82,4 +82,8 @@ export class AdminSectionComponent {
   back() {
     this.router.navigate(['home'])
   }
+
+  addHolidays() {
+    this.router.navigate(['add-holiday'])
+  }
 }

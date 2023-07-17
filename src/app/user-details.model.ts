@@ -32,4 +32,6 @@ export class UserDetails {
 
    userRole:string ="";
 
+   team:string="";
+
 }

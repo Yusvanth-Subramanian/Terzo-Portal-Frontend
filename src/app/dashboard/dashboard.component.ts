@@ -58,7 +58,7 @@ export class DashboardComponent {
       this.sortAttribute="null";
     }
 
-    this.userService.getEmployees(this.currentPage,this.totalUserPerPage,this.sortOption,this.sortAttribute).subscribe(
+    this.userService.getEmployees(this.currentPage,this.totalUserPerPage,this.sortOption,this.sortAttribute,this.searchText).subscribe(
       response => {
         console.log("Load users")
          console.log(response);

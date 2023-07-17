@@ -4,6 +4,9 @@
 <div *ngIf="canAdd()" class="d-flex justify-content-center mt-3">
   <button (click)="addUser()" class="btn-primary">Add User</button>
 </div>
+<div *ngIf="canAdd()" class="d-flex justify-content-center mt-3">
+  <button (click)="addHolidays()" class="btn-primary">Add Holiday</button>
+</div>
 <div id="error" class="alert alert-danger" *ngIf="errorMsg !== ''">{{ errorMsg }}</div>
 <div id="error1" class="alert alert-danger" *ngIf="errorMsg == ''">Unapproved Leaves</div>
 <table *ngIf="data.length > 0" class="table">

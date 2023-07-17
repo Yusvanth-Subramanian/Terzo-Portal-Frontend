@@ -1,0 +1,11 @@
+<form (ngSubmit)="saveHoliday()" #userForm="ngForm">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" [(ngModel)]="holiday.name" name="name" required>
+  </div>
+  <div class="form-group">
+    <label for="employeeType">Date</label>
+    <input type="date" class="form-control" id="employeeType" [(ngModel)]="holiday.date" name="employeeType" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>

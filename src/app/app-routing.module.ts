@@ -16,6 +16,7 @@ import {ChangePasswordComponent} from "./change-password/change-password.compone
 import {ActivateAccountComponent} from "./activate-account/activate-account.component";
 import {LeaveCalenderComponent} from "./leave-calender/leave-calender.component";
 import {RouteToChangePasswordComponent} from "./route-to-change-password/route-to-change-password.component";
+import {AddHolidayComponent} from "./add-holiday/add-holiday.component";
 
 
 let routes: Routes;
@@ -35,7 +36,8 @@ routes = [
   {path:'change-password',component:ChangePasswordComponent},
   {path:'activate-account',component:ActivateAccountComponent},
   {path:'redirect-to-change-password/:email',component:RouteToChangePasswordComponent},
-  {path:'leave-calender',component:LeaveCalenderComponent,canActivate:[AuthGuard]}
+  {path:'leave-calender',component:LeaveCalenderComponent,canActivate:[AuthGuard]},
+  {path:"add-holiday",component:AddHolidayComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

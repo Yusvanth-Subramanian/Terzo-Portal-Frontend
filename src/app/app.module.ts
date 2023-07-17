@@ -24,6 +24,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ActivateAccountComponent } from './activate-account/activate-account.component';
 import { RouteToChangePasswordComponent } from './route-to-change-password/route-to-change-password.component';
 import { LeaveCalenderComponent } from './leave-calender/leave-calender.component';
+import { AddHolidayComponent } from './add-holiday/add-holiday.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { LeaveCalenderComponent } from './leave-calender/leave-calender.componen
     ChangePasswordComponent,
     ActivateAccountComponent,
     RouteToChangePasswordComponent,
-    LeaveCalenderComponent
+    LeaveCalenderComponent,
+    AddHolidayComponent
   ],
   imports: [
     BrowserModule,

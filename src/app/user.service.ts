@@ -6,6 +6,7 @@ import {UnapprovedLeaves} from "./unapproved-leaves.model";
 import {AdminUpdateUserDTO} from "./admin-update-user-dto.model";
 import {User} from "./user.model";
 import {AddUserDTO} from "./add-user-dto.model";
+import {AddHolidayDTO} from "./add-holiday-dto.model";
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,13 @@ export class UserService {
     return this.http.post(`${this.baseUrl}/login`, loginData);
   }
 
-  getEmployees(start:number,end:number,type:string,query:string): Observable<any> {
-    const url = `${this.baseUrl}/get-employees/${start}/${end}/${type}/${query}`;
+  getEmployees(start:number,end:number,type:string,query:string,search:string): Observable<any> {
+    console.log(search)
+    if(search===" "){
+      search="null";
+    }
+    console.log(search)
+    const url = `${this.baseUrl}/get-employees/${start}/${end}/${type}/${query}/${search}`;
     const jwtToken = localStorage.getItem('jwtToken');
     const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
     return this.http.get<any>(url, { headers });
@@ -231,5 +237,12 @@ export class UserService {
     const jwtToken = localStorage.getItem('jwtToken');
     const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
     return this.http.get<any>(url, { headers });
+  }
+
+  addHoliday(holiday: AddHolidayDTO) {
+    const url = `${this.baseUrl}/add-holiday`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `${jwtToken}`);
+    return this.http.post<any>(url, holiday,{ headers });
   }
 }
